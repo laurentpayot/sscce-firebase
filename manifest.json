@@ -1,0 +1,8 @@
+{
+    "name": "SSCCE Firebase",
+    "short_name": "SSCCE Firebase",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "blue",
+    "theme_color": "blue"
+}
