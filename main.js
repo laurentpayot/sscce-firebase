@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app'
 import {
     getAuth, useAuthEmulator, onAuthStateChanged,
-    signInWithRedirect, OAuthProvider
+    signInWithRedirect, OAuthProvider, getRedirectResult
 } from 'firebase/auth'
 
 
@@ -30,7 +30,12 @@ onAuthStateChanged(auth, user => {
     emailEl.innerHTML = user?.email
 })
 
-window.onload = () => {
-    const signInEl = document.body.querySelector("#google-sign-in")
-    signInEl.addEventListener('click', () => signInWithProvider('google.com'))
+const redirectResult = await getRedirectResult(auth)
+if (redirectResult) {
+  const user = redirectResult.user
+  console.log("user =", user)
 }
+
+
+const signInEl = document.body.querySelector("#google-sign-in")
+signInEl.addEventListener('click', () => signInWithProvider('google.com'))
