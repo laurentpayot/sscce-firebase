@@ -1,0 +1,19 @@
+{
+  "name": "sscce-firebase",
+  "version": "0.0.1",
+  "description": "SSCCE for Firebase bugs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/laurentpayot/sscce-firebase.git"
+  },
+  "author": "Laurent Payot",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/laurentpayot/sscce-firebase/issues"
+  },
+  "homepage": "https://github.com/laurentpayot/sscce-firebase#readme"
+}
