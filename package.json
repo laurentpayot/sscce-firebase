@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/laurentpayot/sscce-firebase/issues"
   },
-  "homepage": "https://github.com/laurentpayot/sscce-firebase#readme"
+  "homepage": "https://github.com/laurentpayot/sscce-firebase#readme",
+  "devDependencies": {
+    "firebase-tools": "^9.14.0"
+  }
 }
