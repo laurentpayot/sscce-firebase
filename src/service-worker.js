@@ -4,14 +4,14 @@ const FILES = [
     '/main.js',
 ]
 
-self.addeListener('install', e => {
+self.addEventListener('install', e => {
     e.waitUntil(
         caches.open('sscce-firebase')
         .then(cache => cache.addAll(FILES))
     )
 })
 
-self.addeListener('fetch', e => {
+self.addEventListener('fetch', e => {
     e.respondWith(
         caches.match(e.request)
         .then(response => response || fetch(e.request))
