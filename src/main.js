@@ -30,12 +30,13 @@ onAuthStateChanged(auth, user => {
     emailEl.innerHTML = user?.email
 })
 
-const redirectResult = await getRedirectResult(auth)
-if (redirectResult) {
-  const user = redirectResult.user
-  console.log("user =", user)
+window.onload = async () => {
+  const redirectResult = await getRedirectResult(auth)
+  if (redirectResult) {
+    const user = redirectResult.user
+    console.log("user =", user)
+  }
+
+  const signInEl = document.body.querySelector("#google-sign-in")
+  signInEl.addEventListener('click', () => signInWithProvider('google.com'))
 }
-
-
-const signInEl = document.body.querySelector("#google-sign-in")
-signInEl.addEventListener('click', () => signInWithProvider('google.com'))

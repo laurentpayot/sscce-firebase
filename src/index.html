@@ -29,11 +29,11 @@
 
   </head>
   <body>
-    <h1>SSCCE Firebase</h1>
-
-    <h2>Branch: main</h2>
-
     <main>
+      <h1>SSCCE Firebase</h1>
+
+      <h2>Branch: main</h2>
+
       <p>Current User Email: <span id="current-user-email"></span></p>
       <p>
         <button id="google-sign-in">
@@ -46,7 +46,6 @@
       if ('serviceWorker' in navigator) navigator.serviceWorker.register('service-worker.js')
     </script>
 
-    <!-- module type to allow top-level await -->
-    <script type="module" src="main.js"></script>
+    <script src="main.js"></script>
   </body>
 </html>

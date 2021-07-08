@@ -5,8 +5,11 @@
   "main": "./src/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "firebase emulators:start",
-    "build": "rm -rf dist && mkdir dist && cp src/index.html dist  && cp src/service-worker.js dist && cp -r assets/* dist && rollup --config rollup.config.js"
+    "esbuild": "esbuild src/main.js src/service-worker.js --outdir=dist --target=es6 --bundle",
+    "dist": "rm -rf dist && mkdir dist && cp -r assets/* dist",
+    "start": "npm run dist && ln src/index.html dist && firebase emulators:exec 'npm run esbuild -- --watch'",
+    "build": "npm run dist && cp src/index.html dist && npm run esbuild -- --minify --sourcemap",
+    "deploy": "npm run build && firebase deploy"
   },
   "repository": {
     "type": "git",
@@ -19,9 +22,8 @@
   },
   "homepage": "https://github.com/laurentpayot/sscce-firebase#readme",
   "devDependencies": {
-    "@rollup/plugin-node-resolve": "^13.0.0",
+    "esbuild": "^0.12.15",
     "firebase": "^9.0.0-beta.6",
-    "firebase-tools": "^9.14.0",
-    "rollup": "^2.52.8"
+    "firebase-tools": "^9.14.0"
   }
 }
