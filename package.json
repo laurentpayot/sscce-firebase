@@ -2,10 +2,12 @@
   "name": "sscce-firebase",
   "version": "0.0.1",
   "description": "SSCCE for Firebase bugs",
+  "type": "module",
   "main": "./src/main.js",
+  "exports": "./src/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "esbuild": "esbuild src/main.js src/service-worker.js --outdir=dist --target=es6 --bundle",
+    "esbuild": "esbuild src/main.js src/service-worker.js --outdir=dist --target=esnext --format=esm --bundle",
     "dist": "rm -rf dist && mkdir dist && cp -r assets/* dist",
     "start": "npm run dist && ln src/index.html dist && firebase emulators:exec 'npm run esbuild -- --watch'",
     "build": "npm run dist && cp src/index.html dist && npm run esbuild -- --minify --sourcemap",

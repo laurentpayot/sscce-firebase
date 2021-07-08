@@ -51,6 +51,8 @@
       if ('serviceWorker' in navigator) navigator.serviceWorker.register('service-worker.js')
     </script>
 
-    <script src="main.js"></script>
+    <!-- module type to allow top-level await -->
+    <script type="module" src="main.js"></script>
+
   </body>
 </html>
