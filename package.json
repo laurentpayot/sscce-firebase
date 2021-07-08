@@ -1,7 +1,7 @@
 {
   "name": "sscce-firebase",
   "version": "0.0.1",
-  "description": "SSCCE for Firebase bugs",
+  "description": "Short, Self Contained, Correct Example for Firebase bugs",
   "type": "module",
   "main": "./src/main.js",
   "exports": "./src/main.js",
