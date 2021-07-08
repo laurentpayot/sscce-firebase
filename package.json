@@ -2,11 +2,11 @@
   "name": "sscce-firebase",
   "version": "0.0.1",
   "description": "SSCCE for Firebase bugs",
-  "main": "index.js",
+  "main": "./src/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "firebase emulators:start",
-    "build": "rm -rf dist && mkdir dist && cp index.html dist && cp manifest.json dist && rollup --config rollup.config.js"
+    "build": "rm -rf dist && mkdir dist && cp src/index.html dist && cp -r assets/* dist && rollup --config rollup.config.js"
   },
   "repository": {
     "type": "git",
