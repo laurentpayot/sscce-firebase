@@ -1,6 +1,13 @@
 {
     "name": "SSCCE Firebase",
     "short_name": "SSCCE Firebase",
+    "icons": [
+        {
+            "src": "/img/firebase-logo-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
     "start_url": "/",
     "display": "standalone",
     "background_color": "blue",
