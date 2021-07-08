@@ -8,7 +8,25 @@
     <title>SSCCE Firebase</title>
 
     <link rel="manifest" href="/manifest.json">
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+    <style type="text/css" media="screen, print">
+      body {
+        font-family: Roboto, Arial, Helvetica, sans-serif;
+      }
+      button {
+        color: white;
+        background-color: blue;
+        font-weight: bold;
+        padding: 0.5rem;
+        border-radius: 5px;
+        border: 0;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: darkblue;
+      }
+    </style>
+
   </head>
   <body>
     <h1>SSCCE Firebase</h1>
@@ -23,6 +41,10 @@
         </button>
       </p>
     </main>
+
+    <script>
+      if ('serviceWorker' in navigator) navigator.serviceWorker.register('service-worker.js')
+    </script>
 
     <!-- module type to allow top-level await -->
     <script type="module" src="main.js"></script>
