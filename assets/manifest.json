@@ -3,7 +3,7 @@
     "short_name": "SSCCE Firebase",
     "icons": [
         {
-            "src": "/img/firebase-logo-512.png",
+            "src": "/img/bug-512.png",
             "sizes": "512x512",
             "type": "image/png"
         }
