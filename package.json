@@ -10,7 +10,7 @@
     "esbuild": "esbuild src/main.js src/service-worker.js --outdir=dist --target=esnext --format=esm --bundle",
     "dist": "rm -rf dist && mkdir dist && cp -r assets/* dist",
     "start": "npm run dist && ln src/index.html dist && firebase emulators:exec 'npm run esbuild -- --watch'",
-    "build": "npm run dist && cp src/index.html dist && npm run esbuild -- --minify --sourcemap",
+    "build": "npm run dist && cp src/index.html dist && npm run esbuild -- --minify --sourcemap=external",
     "deploy": "npm run build && firebase deploy"
   },
   "repository": {
