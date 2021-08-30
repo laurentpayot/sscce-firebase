@@ -1,8 +1,8 @@
-import { initializeApp } from 'firebase/app'
+import { initializeApp } from '@firebase/app'
 import {
-    getAuth, useAuthEmulator, onAuthStateChanged,
-    signInWithRedirect, OAuthProvider, getRedirectResult
-} from 'firebase/auth'
+    getFirestore, enableIndexedDbPersistence, // connectFirestoreEmulator,
+    doc, getDoc
+} from '@firebase/firestore'
 
 
 const firebaseConfig = {
@@ -15,27 +15,40 @@ const firebaseConfig = {
 }
 
 initializeApp(firebaseConfig)
-const auth = getAuth()
-if (location.hostname === "localhost") useAuthEmulator(auth, "http://localhost:9099")
+const db = getFirestore()
 
-export function signInWithProvider(providerId) {
-    const provider = new OAuthProvider(providerId)
-    provider.addScope('profile')
-    provider.addScope('email')
-    return signInWithRedirect(auth, provider)
-}
+// not using Firestore emulator
+// if (TESTING) connectFirestoreEmulator(db, 'localhost', 8080)
 
-onAuthStateChanged(auth, user => {
-    const emailEl = document.body.querySelector("#current-user-email")
-    emailEl.innerHTML = user?.email
+//NB not using enableMultiTabIndexedDbPersistence ("only available on platforms that support LocalStorage")
+enableIndexedDbPersistence(db, { forceOwnership: !globalThis.localStorage }) // forceOwnership for web worker
+.then(() => console.debug("Offline persistence enabled."))
+.catch(error => {
+    switch (error.code) {
+        case 'failed-precondition':
+            console.debug("Offline persistence already enabled in another tab.")
+            break
+        case 'unimplemented':
+            console.debug("Offline persistence not supported by browser.")
+            break
+        default:
+            console.error(error)
+    }
 })
 
-
-const redirectResult = await getRedirectResult(auth)
-if (redirectResult) {
-    const user = redirectResult.user
-    console.log("user =", user)
+async function getUserById(uid) {
+    const userDoc = doc(db, 'users', uid)
+    const userSnap = await getDoc(userDoc)
+                        .catch(error => { throw new Error(`error catched: ${error.message}`) })
+    return userSnap.data()
 }
 
-const signInEl = document.body.querySelector("#google-sign-in")
-signInEl.addEventListener('click', () => signInWithProvider('google.com'))
+async function showUserData(uid) {
+    const userDataEl = document.body.querySelector("#user-data")
+    userDataEl.innerHTML = `Getting user "${uid}"…`
+    const data = await getUserById(uid)
+    userDataEl.innerHTML = JSON.stringify(data)
+}
+
+const getLaurentBtn = document.body.querySelector("#get-laurent-btn")
+getLaurentBtn.addEventListener('click', async () => await showUserData('laurent'))

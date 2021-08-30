@@ -4,6 +4,8 @@ const FILES = [
     '/main.js',
 ]
 
+self.addEventListener('activate', e => console.debug("Service worker activated."))
+
 self.addEventListener('install', e => {
     e.waitUntil(
         caches.open('sscce-firebase')
