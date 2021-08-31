@@ -46,3 +46,5 @@ async function getUserById(uid) {
 }
 
 onmessage = async ({ data }) => postMessage(await getUserById(data))
+
+console.debug("Firebase worker ready.")
