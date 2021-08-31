@@ -2,6 +2,8 @@ const FILES = [
     '/',
     '/index.html',
     '/main.js',
+    '/firebase-worker.js',
+    '/firebase-worker-deps.js',
 ]
 
 self.addEventListener('activate', e => console.debug("Service worker activated."))

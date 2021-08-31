@@ -2,15 +2,13 @@
   "name": "sscce-firebase",
   "version": "0.0.1",
   "description": "Short, Self Contained, Correct Example for Firebase bugs",
-  "type": "module",
   "main": "./src/main.js",
-  "exports": "./src/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "esbuild": "esbuild src/main.js src/service-worker.js --outdir=dist --target=esnext --format=esm --bundle",
+    "esbuild": "node src/esbuild.js",
     "dist": "rm -rf dist && mkdir dist && cp -r assets/* dist",
-    "start": "npm run dist && ln src/index.html dist && firebase emulators:exec 'npm run esbuild -- --sourcemap --watch'",
-    "build": "npm run dist && cp src/index.html dist && npm run esbuild -- --minify",
+    "start": "npm run dist && ln src/index.html dist && NODE_ENV=DEV firebase emulators:exec 'npm run esbuild'",
+    "build": "npm run dist && cp src/index.html dist && npm run esbuild",
     "deploy": "npm run build && firebase deploy"
   },
   "repository": {
