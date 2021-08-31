@@ -4,7 +4,7 @@ const {
     initializeApp,
     getFirestore, enableIndexedDbPersistence, // connectFirestoreEmulator,
     doc, getDoc
-} = firebaseWorkerDeps // global variable (set by rollup) for the Firebase bundle imported from ./workerDeps.js
+} = firebaseWorkerDeps // esbuild globalName
 
 
 const firebaseConfig = {
